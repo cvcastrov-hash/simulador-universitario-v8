@@ -37,9 +37,23 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;background-ima
 .raceBanner h3{margin:0 0 7px;color:#ff8793}.raceGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.racePanel{padding:18px;border:1px solid #315b7e;border-radius:16px;background:rgba(5,17,31,.72);min-width:0}.racePanel h3{margin-top:0}.raceCode{font-size:clamp(34px,7vw,54px);font-weight:1000;letter-spacing:7px;color:#ffd35a;text-align:center;padding:12px}.raceTrack{display:grid;gap:9px;margin:15px 0}.raceLane{display:grid;grid-template-columns:32px minmax(0,1fr) 52px;gap:8px;align-items:center}.raceLaneName{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.raceLaneBar{height:24px;border:1px solid #315b7e;border-radius:99px;background:#06101d;overflow:hidden}.raceLaneFill{height:100%;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;background:linear-gradient(90deg,#17b9f1,#24e0d0);border-radius:99px;transition:width .45s}.raceChoices{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.raceChoices button{min-height:70px;text-align:left;background:#102641;color:#eef7ff;border:1px solid #315b7e}.raceChoices button:disabled{opacity:.7}.raceChoices button.good{background:rgba(49,233,129,.16);border-color:#31e981;color:#d9ffe9}.raceChoices button.bad{background:rgba(255,93,108,.16);border-color:#ff5d6c;color:#ffe1e5}.raceQuestion{font-size:clamp(20px,3vw,27px);line-height:1.35}.raceStatus{padding:12px;border-radius:12px;background:#0a192c;border:1px solid #244d70;margin:12px 0}.raceStatus.ok{border-color:#31e981;color:#a8ffd0}.raceStatus.no{border-color:#ff5d6c;color:#ffc1c8}.raceMini{font-size:12px;color:#9bb1c8}.raceTable{width:100%;margin-top:12px}.raceTable td,.raceTable th{padding:9px 7px}.raceActions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}
 @media(max-width:760px){.raceGrid{grid-template-columns:1fr}.raceChoices{grid-template-columns:1fr}.racePanel{padding:14px}.raceLane{grid-template-columns:27px minmax(0,1fr) 42px}}
 
+/* Atmósfera de terror: niebla, sombras y sangre ficticia decorativa */
+.fogLayer{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:.42}
+.fogLayer:before,.fogLayer:after{content:"";position:absolute;left:-25%;width:150%;height:34%;border-radius:50%;filter:blur(35px);background:radial-gradient(ellipse at center,rgba(178,195,205,.18) 0,rgba(90,105,119,.09) 35%,transparent 72%);animation:fogDrift 24s ease-in-out infinite alternate}
+.fogLayer:before{top:24%;transform:rotate(-7deg)}.fogLayer:after{bottom:8%;animation-duration:31s;animation-direction:alternate-reverse;opacity:.75}
+.bloodOverlay{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:.72;background:radial-gradient(ellipse at 0% 0%,rgba(112,0,15,.52),transparent 25%),radial-gradient(ellipse at 100% 0%,rgba(112,0,15,.44),transparent 22%),radial-gradient(ellipse at 0% 100%,rgba(80,0,10,.25),transparent 20%)}
+.bloodOverlay:before{content:"";position:absolute;top:0;left:4%;width:150px;height:92px;background:radial-gradient(ellipse at 30% 0%,#70000f 0 12%,transparent 13%),radial-gradient(ellipse at 50% 0%,#a20c1e 0 17%,transparent 18%),radial-gradient(ellipse at 72% 0%,#65000c 0 13%,transparent 14%);filter:blur(1px);clip-path:polygon(0 0,100% 0,92% 40%,82% 40%,77% 100%,68% 100%,63% 48%,46% 48%,42% 82%,34% 82%,31% 35%,10% 40%)}
+.bloodOverlay:after{content:"";position:absolute;right:5%;bottom:0;width:180px;height:110px;background:radial-gradient(ellipse at 50% 100%,rgba(130,0,18,.72),transparent 68%);filter:blur(4px)}
+.zombieLayer{opacity:.48}.zombie{filter:drop-shadow(0 0 15px rgba(255,15,40,.62)) drop-shadow(0 8px 12px rgba(0,0,0,.9));text-shadow:0 0 18px rgba(180,0,25,.65)}
+.heroArt{background:radial-gradient(ellipse at 50% 60%,#42101a 0,#180a12 42%,#030407 78%)!important;box-shadow:inset 0 0 50px rgba(160,0,20,.28),0 0 25px rgba(0,0,0,.7)}
+.heroArt:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.62),transparent 30%,transparent 70%,rgba(0,0,0,.65)),radial-gradient(ellipse at 50% 100%,rgba(160,170,180,.16),transparent 55%);pointer-events:none}
+.card{backdrop-filter:blur(3px)}
+@keyframes fogDrift{0%{transform:translateX(-5%) translateY(0) scale(1)}100%{transform:translateX(5%) translateY(-12px) scale(1.12)}}
+@media(prefers-reduced-motion:reduce){.fogLayer:before,.fogLayer:after,.zombie{animation:none}}
+
 </style>
 </head>
-<body><div class="zombieLayer"><div class="zombie z1">🧟</div><div class="zombie z2">🧟‍♂️</div><div class="zombie z3">🧟‍♀️</div></div><div class="wrap">
+<body><div class="bloodOverlay" aria-hidden="true"></div><div class="fogLayer" aria-hidden="true"></div><div class="zombieLayer" aria-hidden="true"><div class="zombie z1">🧟</div><div class="zombie z2">🧟‍♂️</div><div class="zombie z3">🧟‍♀️</div></div><div class="wrap">
 <div class="brand"><div><h1>Construye y Gestiona tu Organización</h1><div class="tiny">Simulador universitario interactivo • Versión V8 • Apocalipsis Organizacional</div></div><div class="badge">🎮 15 MISIONES</div></div>
 
 <section id="login" class="card hero">
@@ -103,7 +117,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;background-ima
 </section>
 <section id="raceGame" class="card hidden">
   <div class="raceBanner"><span class="modulePill">MODO COMPETITIVO • 10 RETOS</span><h2>🧟 ¡Corre antes de que te alcancen!</h2><p id="raceGameMeta" class="lead"></p><div class="progressShell"><div id="raceProgress" class="progress"></div></div></div>
-  <div class="raceGrid"><div class="racePanel"><div class="raceMini" id="raceQuestionNo">PREGUNTA 1 DE 10</div><h3 id="raceQuestionTitle" class="raceQuestion"></h3><p id="raceQuestionText" class="lead"></p><div id="raceAnswerChoices" class="raceChoices"></div><div id="raceAnswerFeedback" class="raceStatus" aria-live="polite">Elige la decisión de tu superviviente.</div><p class="raceMini">⏱️ Tiempo para responder: <b id="raceTimer">30</b> segundos</p><button type="button" class="secondary" id="raceSoundToggle" onclick="toggleRaceSound()">🔊 Activar suspenso de fondo</button></div><div class="racePanel"><h3>🏆 Clasificación en vivo</h3><p class="raceMini">Puntaje acumulado: se actualiza al terminar cada pregunta (cada 30 segundos).</p><div id="raceLiveTrack" class="raceTrack"></div><div id="raceLiveTable"></div><p class="raceMini">La clasificación se actualiza entre dispositivos cuando se sincronizan los cambios.</p></div></div>
+  <div class="raceGrid"><div class="racePanel"><div class="raceMini" id="raceQuestionNo">PREGUNTA 1 DE 10</div><h3 id="raceQuestionTitle" class="raceQuestion"></h3><p id="raceQuestionText" class="lead"></p><div id="raceAnswerChoices" class="raceChoices"></div><div id="raceAnswerFeedback" class="raceStatus" aria-live="polite">Elige la decisión de tu superviviente.</div><p class="raceMini">⏱️ Tiempo para responder: <b id="raceTimer">30</b> segundos</p><button type="button" class="secondary" id="raceSoundToggle" onclick="toggleRaceSound()">🔊 Activar sonido de terror</button></div><div class="racePanel"><h3>🏆 Clasificación en vivo</h3><p class="raceMini">Puntaje acumulado: se actualiza al terminar cada pregunta (cada 30 segundos).</p><div id="raceLiveTrack" class="raceTrack"></div><div id="raceLiveTable"></div><p class="raceMini">La clasificación se actualiza entre dispositivos cuando se sincronizan los cambios.</p></div></div>
   <div class="raceActions" id="raceHostGameActions"><span class="tiny">Las rondas avanzan automáticamente cada 30 segundos.</span></div>
 </section>
 <section id="raceResults" class="card hidden"><div class="raceBanner"><span class="modulePill">RESULTADOS DE LA CARRERA</span><h2 id="raceWinnerTitle">🏆 ¡Tenemos ganador!</h2><p id="raceWinnerText" class="lead"></p></div><div id="raceFinalTrack" class="raceTrack"></div><div id="raceFinalTable"></div><div class="raceActions"><button onclick="showRaceSetup()">Crear o unirse a otra sala</button><button class="secondary" onclick="backHome()">Volver al simulador V8</button></div></section>
@@ -229,7 +243,7 @@ function playRaceSound(kind='tick'){
  if(!raceSoundOn)return;
  try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;const ctx=new AC();const tones={start:[440,660],correct:[660,880],wrong:[180,130],tick:[520],end:[523,659,784]};const seq=tones[kind]||tones.tick;seq.forEach((freq,i)=>{const o=ctx.createOscillator(),g=ctx.createGain();o.type=kind==='wrong'?'sawtooth':'sine';o.frequency.value=freq;g.gain.setValueAtTime(.0001,ctx.currentTime+i*.12);g.gain.exponentialRampToValueAtTime(.10,ctx.currentTime+i*.12+.025);g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+i*.12+.18);o.connect(g).connect(ctx.destination);o.start(ctx.currentTime+i*.12);o.stop(ctx.currentTime+i*.12+.2)});setTimeout(()=>ctx.close().catch(()=>{}),1000)}catch(e){}
 }
-function updateRaceSoundButton(){const b=document.getElementById('raceSoundToggle');if(b){b.textContent=raceSoundOn?'🔊 Suspenso de fondo: activado':'🔇 Activar suspenso de fondo';b.setAttribute('aria-pressed',raceSoundOn?'true':'false')}}
+function updateRaceSoundButton(){const b=document.getElementById('raceSoundToggle');if(b){b.textContent=raceSoundOn?'🔊 Sonido de terror: activado':'🔇 Activar sonido de terror';b.setAttribute('aria-pressed',raceSoundOn?'true':'false')}}
 function startSuspenseAmbience(){
  if(!raceSoundOn)return;
  try{
@@ -237,14 +251,23 @@ function startSuspenseAmbience(){
   if(!suspenseAudioCtx){
    const ctx=new AC();suspenseAudioCtx=ctx;
    const master=ctx.createGain();master.gain.value=0.0001;master.connect(ctx.destination);suspenseMaster=master;
-   // Capa grave continua con pequeñas oscilaciones para crear tensión, sin depender de archivos externos.
-   [48,50.8,72,96].forEach((freq,i)=>{const osc=ctx.createOscillator(),gain=ctx.createGain(),filter=ctx.createBiquadFilter();osc.type=i===3?'triangle':'sine';osc.frequency.value=freq;gain.gain.value=i===3?0.12:0.28;filter.type='lowpass';filter.frequency.value=240;osc.connect(filter).connect(gain).connect(master);osc.start();suspenseNodes.push(osc,gain,filter)});
-   const lfo=ctx.createOscillator(),lfoGain=ctx.createGain();lfo.frequency.value=0.09;lfoGain.gain.value=7;lfo.connect(lfoGain);lfoGain.connect(suspenseNodes[0].frequency);lfo.start();suspenseNodes.push(lfo,lfoGain);
-   const length=ctx.sampleRate*2,buffer=ctx.createBuffer(1,length,ctx.sampleRate),data=buffer.getChannelData(0);for(let i=0;i<length;i++)data[i]=(Math.random()*2-1)*0.22;
-   const noise=ctx.createBufferSource(),nf=ctx.createBiquadFilter(),ng=ctx.createGain();noise.buffer=buffer;noise.loop=true;nf.type='lowpass';nf.frequency.value=260;ng.gain.value=0.07;noise.connect(nf).connect(ng).connect(master);noise.start();suspenseNodes.push(noise,nf,ng);
+   // Ambiente continuo de terror: zumbido grave, tono fantasmal ondulante y viento filtrado.
+   [43,47.5,65.4,87.3,174.6].forEach((freq,i)=>{
+    const osc=ctx.createOscillator(),gain=ctx.createGain(),filter=ctx.createBiquadFilter();
+    osc.type=i===4?'sawtooth':(i===3?'triangle':'sine');osc.frequency.value=freq;
+    gain.gain.value=[0.42,0.32,0.18,0.10,0.018][i];
+    filter.type='lowpass';filter.frequency.value=i===4?330:260;filter.Q.value=0.7;
+    osc.connect(filter).connect(gain).connect(master);osc.start();suspenseNodes.push(osc,gain,filter);
+   });
+   // Pulsación lenta, como un latido lejano.
+   const lfo=ctx.createOscillator(),lfoGain=ctx.createGain();lfo.frequency.value=0.12;lfoGain.gain.value=10;lfo.connect(lfoGain);lfoGain.connect(suspenseNodes[0].frequency);lfo.start();suspenseNodes.push(lfo,lfoGain);
+   const trem=ctx.createOscillator(),tremGain=ctx.createGain();trem.frequency.value=0.22;tremGain.gain.value=0.12;trem.connect(tremGain);tremGain.connect(master.gain);trem.start();suspenseNodes.push(trem,tremGain);
+   const length=ctx.sampleRate*3,buffer=ctx.createBuffer(1,length,ctx.sampleRate),data=buffer.getChannelData(0);
+   for(let i=0;i<length;i++)data[i]=(Math.random()*2-1)*0.38;
+   const noise=ctx.createBufferSource(),nf=ctx.createBiquadFilter(),ng=ctx.createGain();noise.buffer=buffer;noise.loop=true;nf.type='lowpass';nf.frequency.value=420;ng.gain.value=0.16;noise.connect(nf).connect(ng).connect(master);noise.start();suspenseNodes.push(noise,nf,ng);
   }
   if(suspenseAudioCtx.state==='suspended')suspenseAudioCtx.resume();
-  suspenseMaster.gain.cancelScheduledValues(suspenseAudioCtx.currentTime);suspenseMaster.gain.setTargetAtTime(0.55,suspenseAudioCtx.currentTime,0.45);
+  suspenseMaster.gain.cancelScheduledValues(suspenseAudioCtx.currentTime);suspenseMaster.gain.setTargetAtTime(0.85,suspenseAudioCtx.currentTime,0.35);
  }catch(e){console.warn('El navegador no permitió iniciar el audio:',e);const b=document.getElementById('raceSoundToggle');if(b)b.textContent='⚠️ Pulsa para habilitar el sonido'}
 }
 function stopSuspenseAmbience(){if(!suspenseAudioCtx)return;try{const ctx=suspenseAudioCtx;if(suspenseMaster){suspenseMaster.gain.cancelScheduledValues(ctx.currentTime);suspenseMaster.gain.setTargetAtTime(0.0001,ctx.currentTime,0.12)}setTimeout(()=>{try{ctx.suspend()}catch(e){}},500)}catch(e){}}
